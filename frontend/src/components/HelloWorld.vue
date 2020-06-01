@@ -4,6 +4,7 @@
     <p>
       Rejoignez-nous dans notre tout nouveau réseau social interne !
     </p>
+    <img src="../assets/icon.svg" alt="logo Groupomania"/>
   </div>
 </template>
 
@@ -11,7 +12,7 @@
   export default {
     name: 'HelloWorld',
     props: {
-      msg: String
+      msg: String,
     }
   };
 </script>

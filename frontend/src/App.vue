@@ -1,20 +1,27 @@
 <template>
   <div id="app">
+    <div id="header">
+      <Header msg="Groupomania"/>
+    </div>
+
     <div id="nav">
-      <HelloWorld msg="Partagez avec Tweetomania !"/>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <Login msg="Communiquez avec Tweetomania"/>
+
+      <router-link to="/">Accueil</router-link> |
+      <router-link to="/about">Groupomania</router-link>
     </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import Header from './components/Header.vue'
+import Login from './components/Login.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Header,
+    Login
   }
 };
 
@@ -30,7 +37,7 @@ export default {
 }
 
 #nav {
-  padding: 30px;
+  background: center no-repeat url("./assets/icon.svg");
 }
 
 #nav a {
@@ -39,6 +46,6 @@ export default {
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #FD2D01;
 }
 </style>
