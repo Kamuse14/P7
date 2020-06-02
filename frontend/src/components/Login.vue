@@ -103,7 +103,7 @@
 /* Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) {
   figure {
-    width: 80%;
+    width: 60%;
     margin: 5rem auto;
   }
   form {
