@@ -1,33 +1,39 @@
 <template>
   <div id="app">
-    <div id="header">
-      <Header msg="Groupomania"/>
-    </div>
+
+    <header-top></header-top>
+
+    <router-view></router-view>
 
     <div id="nav">
-      <Login msg="Communiquez avec Tweetomania"/>
-
       <router-link to="/">Accueil</router-link> |
+      <router-link to="/forum">Forum</router-link> |
       <router-link to="/about">Groupomania</router-link>
     </div>
+
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue'
-import Login from './components/Login.vue';
 
 export default {
   name: 'App',
   components: {
-    Header,
-    Login
+    'header-top': Header
   }
 };
 
 </script>
 
 <style>
+/* Définition des couleurs dans tout le document*/
+:root { 
+  --light-pink: #ffd7d7;
+  --orange: #fd2d01;
+  --light-orange: #ffb4a4;
+  --dark-orange: #641100;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -37,7 +43,13 @@ export default {
 }
 
 #nav {
-  background: center no-repeat url("./assets/icon.svg");
+  position: fixed;
+  width: 100%;
+  height: 40px;
+  margin: 0 auto;
+  bottom: 0;
+  padding-top: 1.5rem;
+  background-color: var(--light-orange);
 }
 
 #nav a {
@@ -46,6 +58,15 @@ export default {
 }
 
 #nav a.router-link-exact-active {
-  color: #FD2D01;
+  color: var(--orange);
 }
+/*/////////// RESPONSIVITY /////////////*/
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+  h2 {
+    font-size: 2em;
+  }
+}
+
+
 </style>

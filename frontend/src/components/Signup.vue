@@ -1,14 +1,14 @@
 <template>
     <div>
         <p>
-          Vous êtes déjà inscrit, connectez-vous ! 
+          Pas encore membre ? Inscrivez-vous ! 
         </p>    
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Login'
+    name: 'Signup'
 };
 </script>
 

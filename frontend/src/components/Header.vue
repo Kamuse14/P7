@@ -1,30 +1,19 @@
 <template>
   <header>
-    <div id="header"><img src="../assets/icon.png" alt="logo Groupomania"/><h2>{{ msg }}</h2><i class="far fa-user" @click="toggleMenu=!toggleMenu"></i>
-    </div>
-    <ul class="menu" :class="{ menu: toggleMenu }">
-    <!-- <li class="itemMenu" v-for="item in menuDeroulant" > {{ item }} </li>  -->   
-    </ul>
+	<div id="header"><img src="../assets/icon.png" alt="logo Groupomania"/><h2> Tweetomania </h2><i class="fas fa-sign-out-alt" @click="toggleMenu=!toggleMenu"></i>
+	</div>
+
+	<ul class="menu">
+		<li class="btn"><router-link to="/" exact>Accueil</router-link></li>
+		<li class="btn"><router-link to="/forum">Forum</router-link></li>
+	</ul>
+
   </header>
 </template>
 
 <script>
 	export default {
-		name: "Header",
-		// data: {
-		// 	menuDeroulant : ["Se connecter", "S'inscrire", "Se déconnecter", "Supprimer son compte"],
-		// 	toggleMenu: false
-		// },
-		// 
-		// data() {
-		// 	return {
-		// 		menuDeroulant : ["Se connecter", "S'inscrire", "Se déconnecter", "Supprimer son compte"],
-		// 		toggleMenu: false	
-		// 	}
-		// },
-		props: {
-			msg: String,	
-		}
+		name: "Header"
 	};
 </script>
 
@@ -48,20 +37,19 @@
 		margin: auto 0;
 		cursor: pointer;
 	}
-	/*.menu {
+	.menu {
 		display: none;
 		position: fixed;
 		right: 0;
 		width: 150px;
 		border: 1px solid #641100;
 	}
-	.itemMenu {
+	.btn {
 		list-style: none;
 		border: 1px solid #641100;
 		background-color: #FFB4A4;
 		padding: 0.5rem;
 		cursor: pointer;
-	}*/
-
+	}
   
 </style>
