@@ -7,6 +7,7 @@
 
     <div id="nav">
       <router-link to="/">Accueil</router-link> |
+      <router-link to="/delacount">Se désinscrire</router-link> |
       <router-link to="/forum">Forum</router-link> |
       <router-link to="/about">Groupomania</router-link>
     </div>
@@ -60,13 +61,14 @@ export default {
 #nav a.router-link-exact-active {
   color: var(--orange);
 }
+
+
 /*/////////// RESPONSIVITY /////////////*/
 /* Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) {
   h2 {
-    font-size: 2em;
+    font-size: 1.8em;
   }
 }
-
 
 </style>

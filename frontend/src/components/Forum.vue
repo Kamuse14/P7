@@ -1,23 +1,91 @@
 <template>
-    <div>
-        <h1>Les articles du forum</h1>
+    <div id="forum">
+        <h1>Partagez vos idées !</h1>
         <hr>
-        <div v-on:click="goDebut" class="btn btn-warning">Retour à l'accueil</div>
-
-
+        <div id="postGroup">
+            <form class="post">
+                <div class="firstbox">
+                    <div class="newPostGroup">
+                        <div class="sujet">
+                            <h3>User1</h3>
+                            <label for="sujet"></label>
+                            <input v-on:input="togglePost" v-model.lazy="formData.sujet" type="text" id="sujet" placeholder="Titre du post">
+                        </div>
+                        <textarea v-on:input="togglePost" v-model.lazy="formData.txt" id="txt" placeHolder="Nouveau post"></textarea>
+                    </div>
+                    <hr>
+                    <div class="submit">
+                        <div class="mediaGroup">
+                            <i class="far fa-image"></i>
+                            <span> Photo</span>
+                        </div>
+                        <button v-on:click.prevent="envoiPost"><i class="far fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </form>
+            <div v-if="infoSubmit" class="post">
+                <div class="datetime"> datetime </div>
+                <div class= "box">
+                    <h3> User1 </h3>
+                    <p> Sujet : <em> {{formData.sujet}} </em> </p>
+                    <img v-bind:src="media" alt="">
+                    <p class="formTxt"> {{formData.txt}} </p>
+                </div>
+            </div>
+            <div class="post">
+                <div class="datetime"> {{post.created_at}} </div>
+                <div class= "box">
+                    <h3> {{post.user.username}} </h3>
+                    <p> Sujet : <em>{{post.title}}</em> </p>
+                    <img v-bind:src="media" alt="">
+                    <p> {{post.description}} </p>
+                    <div>
+                        <div class="datetime"> {{post.comments[0].created_at}} </div>
+                        <div class="comment">
+                            <h3> {{post.comments[0].user}} </h3>
+                            <p> {{post.comments[0].description}} </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-//import axios from 'axios' //pour chercher l'API
+import axios from 'axios' //pour chercher l'API
 
 export default {
     name: 'Forum',
-    // data (){
-    //     return {
-    //         allArticles: []
-    //     }
-    // },
+    data (){
+        return {
+            formData: {
+                sujet: '',
+                txt: ''
+            },
+            infoSubmit: false,
+            post: undefined,
+            media: "/uploads/index_78112a52a2.jpeg" //{{ posts.medias[0].url }}
+            
+        }
+    },
+    methods: {
+        envoiPost: function(){
+            this.infoSubmit = true;
+        },
+        togglePost: function(){
+            this.infoSubmit = false;
+        } 
+    },
+    mounted() {
+     axios
+     .get('http://localhost:1337/posts')
+     .then(reponse => {
+         console.log(reponse);
+         this.post = reponse.data[0];
+         console.log(this.post);
+     })
+    },
     // created(){
     //    axios
     //    .get('https://jsonplaceholder.typicode.com/posts')
@@ -26,15 +94,89 @@ export default {
     //            this.allArticles.push(blogPost);
     //        }
     //    })
-    // },
-    methods: {
-        goDebut: function(){
-            this.$router.push('/')
-        }
-    }
+    // }
 };
 </script>
 
 <style scoped>
-
+    #postGroup {
+        width: 350px;
+        margin: 0 auto;
+    }
+    hr {
+        width: 95%;
+    }
+    .sujet {
+        display: flex;
+    }
+    .sujet h3 {
+        margin: auto 1rem auto 0;    
+    }
+    input {
+        width: 70%;
+    }
+    button {
+        width: auto;
+        margin: 0;
+    }
+    .mediaGroup {
+        border-radius: 50px;
+        background-color: var(--light-pink);
+        text-align: center;
+        padding: 0.6rem;
+        width: auto;
+    }
+    textarea {
+        width: 95%;
+    }
+    .newPostGroup{
+        text-align: center;
+    }
+    .formTxt {
+        white-space: pre;
+    }
+    .datetime {
+      font-size: 0.7em;
+      text-align: right; 
+      margin: auto 0.5rem 0 auto;
+    }
+    h3 {
+        margin-top: 0;
+    }
+    .submit {
+        display: flex;
+        justify-content: space-between;
+    }
+    .newPost, .box, .comment, .firstbox {
+        font-size: 0.9em;
+        border: 0.1rem solid #2c3e50;
+        border-radius: 6px;
+        padding: 1rem;
+        text-align: justify;
+        background-color: var(--light-pink);
+    }
+    
+    .firstbox {
+        background-color: white; 
+        margin: 1rem auto;
+    }
+    .post {
+        width: 100%;
+        margin: 1rem auto;
+    }
+    .comment {
+       background-color: white; 
+       border-radius: 4px;
+       padding: 0.5rem;
+    }
+/*/////////// RESPONSIVITY /////////////*/
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+  #postGroup, form {
+        width: 50%;
+    }
+    form {
+        max-width: none;
+    }
+}
 </style>

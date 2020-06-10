@@ -1,19 +1,25 @@
 <template>
   <header>
-	<div id="header"><img src="../assets/icon.png" alt="logo Groupomania"/><h2> Tweetomania </h2><i class="fas fa-sign-out-alt" @click="toggleMenu=!toggleMenu"></i>
+	<div id="header">
+		<img src="../assets/icon.png" alt="logo Groupomania"/>
+		<h2> Tweetomania </h2>
+		<div class="signout">
+			<router-link to="/" exact>
+				<i class="fas fa-sign-out-alt"></i>
+			</router-link>
+		</div>
 	</div>
-
-	<ul class="menu">
-		<li class="btn"><router-link to="/" exact>Accueil</router-link></li>
-		<li class="btn"><router-link to="/forum">Forum</router-link></li>
-	</ul>
-
   </header>
 </template>
 
 <script>
 	export default {
-		name: "Header"
+		name: "Header",
+		data() {
+			return {
+				
+			}
+		}
 	};
 </script>
 
@@ -25,31 +31,33 @@
 		display: flex;
 		justify-content: space-around;
 		margin: 0;
+		height: 70px;
 	}
 	img {
 		width: 8vh;
 		height: 8vh;
 		margin: auto 0;
 	}
-	i {
+	.signout {
+		margin: auto 0;
+	}
+	.fa-sign-out-alt {
 		font-size: 2.2em;
 		color: #FFD7D7;
-		margin: auto 0;
 		cursor: pointer;
 	}
-	.menu {
-		display: none;
+	.onglet {
 		position: fixed;
-		right: 0;
-		width: 150px;
-		border: 1px solid #641100;
-	}
-	.btn {
+		top: 54px;
+		right: 5%;
 		list-style: none;
-		border: 1px solid #641100;
-		background-color: #FFB4A4;
-		padding: 0.5rem;
-		cursor: pointer;
+		width: 120px;
 	}
-  
+	a {
+		text-decoration: none;
+		color: var(--dark-orange);
+	}
+	a:hover, a:active {
+		color: var(--light-pink);
+	}
 </style>

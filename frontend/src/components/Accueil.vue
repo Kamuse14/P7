@@ -79,7 +79,7 @@
   }
   #container {
     max-width: 320px; 
-    margin: 2.5rem auto;
+    margin: 1.5rem auto 3rem auto;
     text-align: center;
     background: center no-repeat url("../assets/icon.svg");
   }
@@ -97,16 +97,18 @@
     margin: 1rem auto 0 0;
   }
   .onglet {
-    background-color: rgba(255, 198, 185, 0.5);
+    background-color: var(--light-orange);
     border: 0.2rem solid #641100;
     border-radius: 8%;
-    width: 100px;
+    width: 110px;
     color: var(--dark-orange);
+    font-weight: bold;
     padding:0.6rem;
     cursor: pointer;
   } 
   .onglet:hover, .onglet:active {
-    background-color: rgba(253, 45, 1, 0.3);
+    background-color: var(--orange);
+    color: var(--light-pink);
     
   }
 
@@ -144,7 +146,7 @@
 @media (min-width: 768px) {
   #container {
     max-width: 800px; 
-    margin: 5rem auto;
+    margin: 2rem auto 5rem auto;
   }
 
   #onglets, figure {
