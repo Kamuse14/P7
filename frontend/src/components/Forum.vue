@@ -6,12 +6,12 @@
             <form class="post">
                 <div class="firstbox">
                     <div class="newPostGroup">
-                        <div class="sujet">
+                        <div class="titre">
                             <h3>User1</h3>
-                            <label for="sujet"></label>
-                            <input v-on:input="togglePost" v-model.lazy="formData.sujet" type="text" id="sujet" placeholder="Titre du post">
+                            <label for="titre"></label>
+                            <input v-on:input="togglePost" v-model.lazy="formData.title" type="text" id="titre" placeholder="Titre du post">
                         </div>
-                        <textarea v-on:input="togglePost" v-model.lazy="formData.txt" id="txt" placeHolder="Nouveau post"></textarea>
+                        <textarea v-on:input="togglePost" v-model.lazy="formData.body" id="texte" placeHolder="Nouveau post"></textarea>
                     </div>
                     <hr>
                     <div class="submit">
@@ -27,25 +27,25 @@
                 <div class="datetime"> datetime </div>
                 <div class= "box">
                     <h3> User1 </h3>
-                    <p> Sujet : <em> {{formData.sujet}} </em> </p>
+                    <p> Sujet : <em> {{formData.title}} </em> </p>
                     <img v-bind:src="media" alt="">
-                    <p class="formTxt"> {{formData.txt}} </p>
+                    <p class="formTxt"> {{formData.body}} </p>
                 </div>
             </div>
-            <div class="post">
-                <div class="datetime"> {{post.created_at}} </div>
+            <div v-for="item in post" v-bind:key="item" class="post">
+                <div class="datetime"> {{post.date}} </div>
                 <div class= "box">
-                    <h3> {{post.user.username}} </h3>
+                    <h3> {{post.pseudo}} </h3>
                     <p> Sujet : <em>{{post.title}}</em> </p>
-                    <img v-bind:src="media" alt="">
-                    <p> {{post.description}} </p>
-                    <div>
-                        <div class="datetime"> {{post.comments[0].created_at}} </div>
+                    <img v-bind:src="imageUrl" alt="">
+                    <p> {{post.body}} </p>
+                    <!-- <div>
+                        <div class="datetime"> {{post.comments[0].date}} </div>
                         <div class="comment">
-                            <h3> {{post.comments[0].user}} </h3>
-                            <p> {{post.comments[0].description}} </p>
+                            <h3> {{post.comments[0].pseudo}} </h3>
+                            <p> {{post.comments[0].body}} </p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -60,13 +60,17 @@ export default {
     data (){
         return {
             formData: {
-                sujet: '',
-                txt: ''
+                title: '',
+                body: ''
             },
             infoSubmit: false,
-            post: undefined,
-            media: "/uploads/index_78112a52a2.jpeg" //{{ posts.medias[0].url }}
-            
+            post: {
+                title: undefined,
+                pseudo: undefined,
+                body: undefined,
+                imageUrl: undefined
+            }
+                    
         }
     },
     methods: {
@@ -79,11 +83,10 @@ export default {
     },
     mounted() {
      axios
-     .get('http://localhost:1337/posts')
+     .get('http://localhost:3000/api/posts')
      .then(reponse => {
          console.log(reponse);
-         this.post = reponse.data[0];
-         console.log(this.post);
+         this.post = reponse.data;
      })
     },
     // created(){
@@ -106,10 +109,10 @@ export default {
     hr {
         width: 95%;
     }
-    .sujet {
+    .titre {
         display: flex;
     }
-    .sujet h3 {
+    .titre h3 {
         margin: auto 1rem auto 0;    
     }
     input {
