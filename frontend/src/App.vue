@@ -9,7 +9,7 @@
       <router-link to="/">Accueil</router-link> |
       <router-link to="/delacount">Se désinscrire</router-link> |
       <router-link to="/forum">Forum</router-link> |
-      <router-link to="/about">Groupomania</router-link>
+      <router-link to="/about"><img src="./assets/icon-grey.png"> Groupomania</router-link>
     </div>
 
   </div>
@@ -34,7 +34,9 @@ export default {
   --orange: #fd2d01;
   --light-orange: #ffb4a4;
   --dark-orange: #641100;
+  --grey: #2c3e50;
 }
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -43,6 +45,7 @@ export default {
   color: #2c3e50;
 }
 
+/*///// footer //////*/
 #nav {
   position: fixed;
   width: 100%;
@@ -62,13 +65,9 @@ export default {
   color: var(--orange);
 }
 
-
-/*/////////// RESPONSIVITY /////////////*/
-/* Medium devices (tablets, 768px and up)*/
-@media (min-width: 768px) {
-  h2 {
-    font-size: 1.8em;
-  }
+#nav img {
+  width: 15px;
+  color: var(--grey);
 }
 
 </style>

@@ -1,6 +1,13 @@
 <template>
   <div class="accueil">
-    <h1>Partagez avec Tweetomania!</h1>
+    <div class="sstitre">
+      <h1>Partagez avec </h1>
+      <div class="logo" >
+        <img src="../assets/icon.svg">
+        <div class="groupomania">Groupomania</div> 
+      </div>
+    </div>
+    
     <div id="container">
         <div id="onglets">
               <div class="onglet" @click="toggleLogin"> Se connecter </div>
@@ -10,32 +17,6 @@
         <figure>
           <login v-if="toggleIn"></login>
           <signup v-if="toggleUp"></signup>
-
-          <form action="">
-            <div class="form-group">
-              <label for="lastName">
-                Pseudo<span>*</span> : 
-              </label>
-              <input id="pseudo" class="form-control" type="text" placeholder="Pseudo" name="lastName" onchange="" required />
-            </div>
-            <div class="form-group">
-              <label for="email">
-                Email<span>*</span> : 
-              </label>
-              <input id="email" class="form-control" type="email" placeholder="utilisateur@domaine.fr" name="email" onchange="" required />
-            </div>
-            <div class="form-group">
-              <label for="email">
-                Mot de passe<span>*</span> : 
-              </label>
-              <input id="mdp" class="form-control" type="password" name="mdp" onchange="" required />
-            </div>
-            <button id="btn-envoyer" class="sendform" type="submit" >S'identifier</button>
-          </form>    
-        
-          <p>
-            Rejoignez-nous dans notre tout nouveau réseau social interne !
-          </p>
         </figure>
     </div>
   </div>
@@ -70,13 +51,25 @@
   };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style>
   
-  /*/////////// formulaire /////////////*/
-  h1 {
+  /*/////////// sous-titre /////////////*/
+  h1, .logo {
     margin: 1rem;
   }
+  .logo {
+    display: flex;
+    justify-content: center;
+    color: var(--orange);
+    font-size: 2em;
+    font-weight: bold;
+  }
+  .logo img {
+    width: 50px;
+  }
+
+  /*/////////// formulaire /////////////*/
   #container {
     max-width: 320px; 
     margin: 1.5rem auto 3rem auto;
@@ -88,7 +81,7 @@
     position: relative;
     background-color: rgba(253, 45, 1, 0.3);
     box-shadow: 2px 2px 10px #FD2D01;
-    padding: 0.5rem;
+    padding: 0.8rem;
     margin: 0;
   }
   #onglets {

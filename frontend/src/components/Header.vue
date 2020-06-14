@@ -2,7 +2,7 @@
   <header>
 	<div id="header">
 		<img src="../assets/icon.png" alt="logo Groupomania"/>
-		<h2> Tweetomania </h2>
+		<h2> Groupomania </h2>
 		<div class="signout">
 			<router-link to="/" exact>
 				<i class="fas fa-sign-out-alt"></i>
@@ -26,26 +26,29 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 	#header {
-		background-color: #FD2D01;
-		margin-top: 0.5rem;
+		background-color: var(--orange);
 		display: flex;
 		justify-content: space-around;
 		margin: 0;
-		height: 70px;
+		height: 80px;
 	}
 	img {
 		width: 8vh;
 		height: 8vh;
 		margin: auto 0;
 	}
+	h2 {
+		font-size: 1.8em;
+		}
 	.signout {
 		margin: auto 0;
 	}
 	.fa-sign-out-alt {
 		font-size: 2.2em;
-		color: #FFD7D7;
+		color: var(--light-pink);
 		cursor: pointer;
 	}
+	
 	.onglet {
 		position: fixed;
 		top: 54px;
@@ -53,11 +56,5 @@
 		list-style: none;
 		width: 120px;
 	}
-	a {
-		text-decoration: none;
-		color: var(--dark-orange);
-	}
-	a:hover, a:active {
-		color: var(--light-pink);
-	}
+
 </style>

@@ -11,7 +11,7 @@
                             <label for="titre"></label>
                             <input v-on:input="togglePost" v-model.lazy="formData.title" type="text" id="titre" placeholder="Titre du post">
                         </div>
-                        <textarea v-on:input="togglePost" v-model.lazy="formData.body" id="texte" placeHolder="Nouveau post"></textarea>
+                        <textarea v-on:input="togglePost" v-model.lazy="formData.txt" id="texte" placeHolder="Nouveau post"></textarea>
                     </div>
                     <hr>
                     <div class="submit">
@@ -29,21 +29,21 @@
                     <h3> User1 </h3>
                     <p> Sujet : <em> {{formData.title}} </em> </p>
                     <img v-bind:src="media" alt="">
-                    <p class="formTxt"> {{formData.body}} </p>
+                    <p class="formTxt"> {{formData.txt}} </p>
                 </div>
             </div>
             <div v-for="item in post" v-bind:key="item" class="post">
-                <div class="datetime"> {{post.date}} </div>
+                <div class="datetime"> {{post.created_at}} </div>
                 <div class= "box">
-                    <h3> {{post.pseudo}} </h3>
+                    <h3> {{post.userPseudo}} </h3>
                     <p> Sujet : <em>{{post.title}}</em> </p>
                     <img v-bind:src="imageUrl" alt="">
-                    <p> {{post.body}} </p>
+                    <p> {{post.txt}} </p>
                     <!-- <div>
-                        <div class="datetime"> {{post.comments[0].date}} </div>
+                        <div class="datetime"> {{post.comments[0].created_at}} </div>
                         <div class="comment">
-                            <h3> {{post.comments[0].pseudo}} </h3>
-                            <p> {{post.comments[0].body}} </p>
+                            <h3> {{post.comments[0].userPseudo}} </h3>
+                            <p> {{post.comments[0].txt}} </p>
                         </div>
                     </div> -->
                 </div>
@@ -61,13 +61,13 @@ export default {
         return {
             formData: {
                 title: '',
-                body: ''
+                txt: ''
             },
             infoSubmit: false,
             post: {
                 title: undefined,
-                pseudo: undefined,
-                body: undefined,
+                userPseudo: undefined,
+                txt: undefined,
                 imageUrl: undefined
             }
                     
@@ -83,7 +83,7 @@ export default {
     },
     mounted() {
      axios
-     .get('http://localhost:3000/api/posts')
+     .get('http://localhost:3000') // 'http://localhost:3000/api/posts' pour trouver tous les posts
      .then(reponse => {
          console.log(reponse);
          this.post = reponse.data;
