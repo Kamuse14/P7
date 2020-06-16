@@ -83,21 +83,12 @@ export default {
     },
     mounted() {
      axios
-     .get('http://localhost:3000') // 'http://localhost:3000/api/posts' pour trouver tous les posts
+     .get('http://localhost:3000/api/posts') 
      .then(reponse => {
          console.log(reponse);
          this.post = reponse.data;
      })
-    },
-    // created(){
-    //    axios
-    //    .get('https://jsonplaceholder.typicode.com/posts')
-    //    .then(reponse => {
-    //        for(const blogPost of reponse.data){
-    //            this.allArticles.push(blogPost);
-    //        }
-    //    })
-    // }
+    }
 };
 </script>
 

@@ -8,18 +8,17 @@
 			<figure>
 				<h3>Vous souhaitez nous quitter ? Complétez ce formulaire puis cliquez sur "confirmer".</h3>
 				
-				<form action="">
+				<form @submit="formSubmit" action="">
 					<div class="form-group">
-						<label for="email">
-							Email<span>*</span> : 
+						<label for="lastName">Pseudo<span>*</span> : 
 						</label>
-						<input id="email" class="form-control" type="email" placeholder="utilisateur@domaine.fr" name="email" onchange="" required />
+						<input id="pseudo" class="form-control" v-model="pseudo" type="text" placeholder="Pseudo" name="lastName" onchange="" required />
 					</div>
 					<div class="form-group">
 						<label for="email">
 							Mot de passe<span>*</span> : 
 						</label>
-						<input id="mdp" class="form-control" type="password" name="mdp" onchange="" required />
+						<input id="mdp" class="form-control" v-model="password" type="password" name="mdp" onchange="" required />
 					</div>
 					<button id="btn-envoyer" class="sendform" type="submit" >confirmer</button>
 				</form>    
@@ -29,8 +28,24 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-	name: 'Delacount'
+	name: 'Delacount',
+	data(){
+        return {
+            pseudo: '',
+            password:''
+        };
+    },
+    methods: {
+        formSubmit(e) {
+            e.preventDefault();
+            axios.delete('http://localhost:3000/api/auth/delacount', {
+                
+            });
+        }
+    }
 };
 </script>
 
